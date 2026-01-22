@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Aotearoa Adventure Gear</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/custom-styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.png" alt="Aotearoa Adventure Gear Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Help</a></li>
+                    <li class="nav-item ms-3">
+                        <a href="shopping-cart.html" class="btn btn-cart">
+                            <i class="fas fa-shopping-cart me-2"></i>Your Cart
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="container">
+            <h1>Adventure Gear for Every Journey</h1>
+            
+            <form class="search-bar-large mt-4" id="searchForm" onsubmit="return searchProducts(event)">
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="fas fa-search"></i></span>
+                    <input type="search" class="form-control border-start-0" placeholder="Search for gear..." id="searchInput">
+                    <button class="btn btn-primary-custom" type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Featured Categories</h2>
+            <p class="section-subtitle">Explore gear by activity</p>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="category-card" onclick="filterByCategory('hiking')" style="cursor: pointer;">
+                        <img src="images/categories/hiking.jpg" alt="Hiking & Tramping">
+                        <h5>Hiking & Tramping</h5>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="category-card" onclick="filterByCategory('camping')" style="cursor: pointer;">
+                        <img src="images/categories/camping.jpg" alt="Camping">
+                        <h5>Camping</h5>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="category-card" onclick="filterByCategory('climbing')" style="cursor: pointer;">
+                        <img src="images/categories/climbing.jpg" alt="Climbing">
+                        <h5>Climbing</h5>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="category-card bg-dark text-white d-flex align-items-center justify-content-center" onclick="showAllProducts()" style="cursor: pointer; min-height: 200px;">
+                        <div class="text-center">
+                            <h5 class="text-white">Shop Now</h5>
+                            <i class="fas fa-arrow-right fa-2x mt-2"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4">
+                    <img src="images/newsletter.jpg" alt="Newsletter" class="img-fluid rounded">
+                </div>
+                <div class="col-lg-8">
+                    <h3>Get Updates & Exclusive Offers</h3>
+                    <p class="mb-3">Join our community of adventurers and be the first to know about new gear and special deals.</p>
+                    <form class="needs-validation" novalidate onsubmit="return subscribeNewsletter(event)">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Enter your email" required>
+                            <button class="btn btn-primary-custom" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <div class="sidebar-content">
+                        <img src="images/nz-adventure.jpg" alt="New Zealand Adventure" class="img-fluid rounded mb-3">
+                        <h3>New Season Collection</h3>
+                        <p class="text-muted">Discover our latest gear designed specifically for New Zealand's unique terrain. From alpine peaks to coastal trails, we've got you covered.</p>
+                        <button class="btn btn-secondary-custom" onclick="showAllProducts()">Browse All</button>
+                    </div>
+                </div>
+                
+                <div class="col-lg-9">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h2>All Products</h2>
+                            <p class="text-muted mb-0" id="productCount">Showing all products</p>
+                        </div>
+                        <select class="form-select" style="width: auto;" id="sortSelect" onchange="sortProducts()">
+                            <option value="default">Sort by: Default</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="name">Name: A-Z</option>
+                            <option value="rating">Rating: High to Low</option>
+                        </select>
+                    </div>
+                    
+                    <div class="row g-4 product-grid" id="productGrid"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mb-4 text-center">
+                    <nav class="d-flex gap-4 mb-3 justify-content-center">
+                        <a href="index.html">Home</a>
+                        <a href="shop.html">Shop</a>
+                        <a href="#about">About</a>
+                        <a href="#contact">Help</a>
+                    </nav>
+                    <img src="images/logo.png" alt="Aotearoa Adventure Gear" class="footer-logo mb-3">
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Aotearoa Adventure Gear. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/floating-anchor.js"></script>
+    <script src="js/validation.js"></script>
+    
+    <script>
+        let currentProducts = products;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            displayProducts(products);
+        });
+        
+        function displayProducts(productsToDisplay) {
+            const grid = document.getElementById('productGrid');
+            const count = document.getElementById('productCount');
+            
+            grid.innerHTML = '';
+            count.textContent = `Showing ${productsToDisplay.length} product(s)`;
+            
+            productsToDisplay.forEach(product => {
+                const col = document.createElement('div');
+                col.className = 'col-md-6 col-lg-4';
+                col.innerHTML = `
+                    <div class="product-card hover-lift" onclick="window.location.href='product-detail.html?id=${product.id}'" style="cursor: pointer;">
+                        <img src="${product.image}" alt="${product.name}">
+                        <div class="product-card-body">
+                            <h5 class="product-name">${product.name}</h5>
+                            <div class="product-price">${formatCurrency(product.price)}</div>
+                            ${generateStarRating(product.rating, product.reviews)}
+                            <button class="btn btn-primary-custom btn-sm mt-3 w-100" onclick="event.stopPropagation(); quickAddToCart(${product.id})">
+                                <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(col);
+            });
+        }
+        
+        function filterByCategory(category) {
+            currentProducts = getProductsByCategory(category);
+            displayProducts(currentProducts);
+        }
+        
+        function showAllProducts() {
+            currentProducts = products;
+            displayProducts(currentProducts);
+        }
+        
+        function searchProducts(event) {
+            event.preventDefault();
+            const query = document.getElementById('searchInput').value;
+            if (query.trim().length > 0) {
+                currentProducts = searchProducts(query);
+                displayProducts(currentProducts);
+            }
+            return false;
+        }
+        
+        function sortProducts() {
+            const sortBy = document.getElementById('sortSelect').value;
+            let sorted = [...currentProducts];
+            
+            switch(sortBy) {
+                case 'price-low':
+                    sorted.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    sorted.sort((a, b) => b.price - a.price);
+                    break;
+                case 'name':
+                    sorted.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case 'rating':
+                    sorted.sort((a, b) => b.rating - a.rating);
+                    break;
+            }
+            
+            displayProducts(sorted);
+        }
+        
+        function quickAddToCart(productId) {
+            const product = getProductById(productId);
+            
+            if (product && product.models && product.models.length > 0) {
+                addToCart(productId, 1, product.models[0]);
+            } else {
+                showNotification('Error adding product to cart', 'error');
+            }
+        }
+        
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            showNotification('Thank you for subscribing!', 'success');
+            event.target.reset();
+            return false;
+        }
+    </script>
+</body>
+</html>

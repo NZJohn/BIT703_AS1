@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Options - Aotearoa Adventure Gear</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/custom-styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.png" alt="Aotearoa Adventure Gear Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Help</a></li>
+                    <li class="nav-item ms-3">
+                        <a href="shopping-cart.html" class="btn btn-cart">
+                            <i class="fas fa-shopping-cart me-2"></i>Your Cart
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="d-flex justify-content-center align-items-center mb-4">
+            <div class="d-flex align-items-center">
+                <div class="step-circle completed"><i class="fas fa-check"></i></div>
+                <span class="ms-2">Shopping Cart</span>
+            </div>
+            <div class="step-line mx-3" style="width: 100px; height: 2px; background: #3d5a5c;"></div>
+            <div class="d-flex align-items-center">
+                <div class="step-circle completed"><i class="fas fa-check"></i></div>
+                <span class="ms-2">Shipping Details</span>
+            </div>
+            <div class="step-line mx-3" style="width: 100px; height: 2px; background: #3d5a5c;"></div>
+            <div class="d-flex align-items-center">
+                <div class="step-circle active"><span>3</span></div>
+                <span class="ms-2 fw-bold">Payment Options</span>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .step-circle {
+            width: 40px; height: 40px; border-radius: 50%;
+            background-color: #e9ecef; color: #6c757d;
+            display: inline-flex; align-items: center; justify-content: center; font-weight: 600;
+        }
+        .step-circle.active { background-color: #3d5a5c; color: white; }
+        .step-circle.completed { background-color: #28a745; color: white; }
+        
+        .payment-option {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .payment-option:hover {
+            border-color: #3d5a5c !important;
+            box-shadow: 0 2px 8px rgba(61, 90, 92, 0.1);
+        }
+        .payment-option input[type="radio"]:checked ~ label {
+            color: #3d5a5c;
+        }
+    </style>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-8">
+                <h3 class="mb-4">Payment Method</h3>
+                
+                <form id="paymentForm" class="needs-validation" novalidate onsubmit="return submitPayment(event)">
+                    <div class="border rounded p-4 mb-3 payment-option">
+                        <div class="d-flex align-items-start">
+                            <input class="form-check-input mt-1 me-3" type="radio" name="paymentMethod" id="creditCard" value="card" checked style="min-width: 20px; min-height: 20px;">
+                            <div class="flex-grow-1">
+                                <label for="creditCard" style="cursor: pointer;">
+                                    <h5 class="mb-2">Credit Card</h5>
+                                    <p class="text-muted small mb-3">Safe money transfer using your bank account. Visa, Maestro, Discover, American Express.</p>
+                                </label>
+                                
+                                <div id="cardDetails">
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="cardNumber" name="cardNumber" 
+                                                       placeholder="0000 0000 0000 0000" maxlength="19" required>
+                                                <span class="input-group-text"><i class="fas fa-credit-card"></i></span>
+                                            </div>
+                                            <div class="invalid-feedback">Please provide a valid card number.</div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" id="expiryDate" name="expiryDate" 
+                                                   placeholder="MM / YY" maxlength="7" required>
+                                            <div class="invalid-feedback">Expiry required.</div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="cvv" name="cvv" 
+                                                       placeholder="CVV" maxlength="4" required>
+                                                <span class="input-group-text"><i class="fas fa-question-circle"></i></span>
+                                            </div>
+                                            <div class="invalid-feedback">CVV required.</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <input type="text" class="form-control" id="cardholderName" name="cardholderName" 
+                                               placeholder="Card Holder Name" required>
+                                        <div class="invalid-feedback">Please provide cardholder name.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border rounded p-4 mb-4 payment-option">
+                        <div class="d-flex align-items-start">
+                            <input class="form-check-input mt-1 me-3" type="radio" name="paymentMethod" id="paypal" value="paypal" style="min-width: 20px; min-height: 20px;">
+                            <div class="flex-grow-1">
+                                <label for="paypal" class="d-flex align-items-center justify-content-between" style="cursor: pointer;">
+                                    <div>
+                                        <h5 class="mb-2">PayPal</h5>
+                                        <p class="text-muted small mb-0">You will be redirected to PayPal to complete your purchase.</p>
+                                    </div>
+                                    <i class="fab fa-paypal fa-3x text-primary ms-3"></i>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex gap-3">
+                        <button type="submit" class="btn btn-primary-custom">
+                            <i class="fas fa-lock me-2"></i>Pay Now
+                        </button>
+                        <button type="button" class="btn btn-secondary-custom" onclick="window.location.href='shipping-details.html'">
+                            Back
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="cart-summary sticky-top" style="top: 20px;">
+                    <h4 class="mb-4">Summary</h4>
+                    <div id="cartSummaryItems" class="mb-4"></div>
+                    
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <button class="btn btn-link p-0 text-decoration-none text-uppercase" data-bs-toggle="collapse" data-bs-target="#couponCollapse" style="font-size: 0.9rem; letter-spacing: 0.5px;">
+                                Have a voucher?
+                            </button>
+                            <i class="fas fa-chevron-down" data-bs-toggle="collapse" data-bs-target="#couponCollapse" style="cursor: pointer;"></i>
+                        </div>
+                        <div class="collapse" id="couponCollapse">
+                            <div class="input-group mt-2">
+                                <input type="text" class="form-control" placeholder="Enter voucher code">
+                                <button class="btn btn-outline-secondary" type="button">Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="summarySubtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span id="summaryShipping">FREE</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Taxes</span>
+                        <span id="summaryTax">$0.00</span>
+                    </div>
+                    <div class="summary-row border-0 pt-3">
+                        <span>Total</span>
+                        <span id="summaryTotal">$0.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mb-4 text-center">
+                    <nav class="d-flex gap-4 mb-3 justify-content-center">
+                        <a href="index.html">Home</a>
+                        <a href="shop.html">Shop</a>
+                        <a href="#about">About</a>
+                        <a href="#contact">Help</a>
+                    </nav>
+                    <img src="images/logo.png" alt="Aotearoa Adventure Gear" class="footer-logo mb-3">
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Aotearoa Adventure Gear. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/validation.js"></script>
+    
+    <script>
+        document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const cardDetails = document.getElementById('cardDetails');
+                if (this.value === 'card') {
+                    cardDetails.style.display = 'block';
+                    cardDetails.querySelectorAll('input').forEach(input => input.required = true);
+                } else {
+                    cardDetails.style.display = 'none';
+                    cardDetails.querySelectorAll('input').forEach(input => input.required = false);
+                }
+            });
+        });
+        
+        function submitPayment(event) {
+            event.preventDefault();
+            const form = event.target;
+            
+            if (!form.checkValidity()) {
+                form.classList.add('was-validated');
+                return false;
+            }
+            
+            processPayment();
+            return false;
+        }
+    </script>
+</body>
+</html>

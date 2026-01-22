@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shopping Cart - Aotearoa Adventure Gear">
+    <title>Shopping Cart - Aotearoa Adventure Gear</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/custom-styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.png" alt="Aotearoa Adventure Gear Logo">
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="shop.html">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Help</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a href="shopping-cart.html" class="btn btn-cart">
+                            <i class="fas fa-shopping-cart me-2"></i>Your Cart
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex justify-content-center align-items-center mb-4">
+                    <div class="d-flex align-items-center">
+                        <div class="step-circle active">
+                            <span>1</span>
+                        </div>
+                        <span class="ms-2 fw-bold">Shopping Cart</span>
+                    </div>
+                    <div class="step-line mx-3"></div>
+                    <div class="d-flex align-items-center">
+                        <div class="step-circle">
+                            <span>2</span>
+                        </div>
+                        <span class="ms-2 text-muted">Shipping Details</span>
+                    </div>
+                    <div class="step-line mx-3"></div>
+                    <div class="d-flex align-items-center">
+                        <div class="step-circle">
+                            <span>3</span>
+                        </div>
+                        <span class="ms-2 text-muted">Payment Options</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e9ecef;
+            color: #6c757d;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        .step-circle.active {
+            background-color: #3d5a5c;
+            color: white;
+        }
+        .step-line {
+            width: 100px;
+            height: 2px;
+            background-color: #e9ecef;
+        }
+        @media (max-width: 768px) {
+            .step-line { width: 50px; }
+            .step-circle { width: 35px; height: 35px; font-size: 0.9rem; }
+        }
+    </style>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-8">
+                <h3 class="mb-4">Shopping Cart</h3>
+                <div id="cartItems"></div>
+                
+                <div class="d-flex gap-3 mt-4">
+                    <button class="btn btn-primary-custom" onclick="proceedToShipping()">
+                        Next <i class="fas fa-arrow-right ms-2"></i>
+                    </button>
+                    <button class="btn btn-secondary-custom" onclick="window.location.href='shop.html'">
+                        Continue Shopping
+                    </button>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="cart-summary sticky-top" style="top: 20px;">
+                    <h4 class="mb-4">Summary</h4>
+                    
+                    <div class="mb-3">
+                        <label for="couponCode" class="form-label text-uppercase small text-muted">Enter Coupon Code</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="couponCode" placeholder="Coupon code">
+                            <button class="btn btn-outline-secondary" type="button">Apply</button>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="summarySubtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span id="summaryShipping">FREE</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Taxes</span>
+                        <span id="summaryTax">$0.00</span>
+                    </div>
+                    <div class="summary-row border-0 pt-3">
+                        <span>Total</span>
+                        <span id="summaryTotal">$0.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mb-4 text-center">
+                    <nav class="d-flex gap-4 mb-3 justify-content-center">
+                        <a href="index.html">Home</a>
+                        <a href="shop.html">Shop</a>
+                        <a href="#about">About</a>
+                        <a href="#contact">Help</a>
+                    </nav>
+                    <img src="images/logo.png" alt="Aotearoa Adventure Gear" class="footer-logo mb-3">
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Aotearoa Adventure Gear. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    
+    <script>
+        function proceedToShipping() {
+            const cart = getCart();
+            if (cart.length === 0) {
+                showNotification('Your cart is empty!', 'warning');
+                return;
+            }
+            window.location.href = 'shipping-details.html';
+        }
+        
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const cart = getCart();
+                if (cart && cart.length > 0) {
+                    displayCart();
+                }
+            }, 100);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Product Detail - Aotearoa Adventure Gear</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/custom-styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.png" alt="Aotearoa Adventure Gear Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Help</a></li>
+                    <li class="nav-item ms-3">
+                        <a href="shopping-cart.html" class="btn btn-cart">
+                            <i class="fas fa-shopping-cart me-2"></i>Your Cart
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="sticky-top" style="top: 20px;">
+                    <img id="productImage" src="" alt="Product" class="img-fluid rounded shadow">
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <h1 id="productName" class="mb-3"></h1>
+                
+                <div id="productRating" class="mb-3"></div>
+                
+                <h2 id="productPrice" class="text-teal mb-4"></h2>
+                
+                <div class="mb-4">
+                    <label for="modelSelect" class="form-label fw-bold">Select Model</label>
+                    <select class="form-select" id="modelSelect" style="max-width: 300px;">
+                        <option value="">Choose a model...</option>
+                    </select>
+                </div>
+                
+                <p id="productDescription" class="mb-4"></p>
+                
+                <div class="d-flex gap-3 mb-4">
+                    <button class="btn btn-primary-custom" onclick="addProductToCart()">
+                        <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                    </button>
+                    <button class="btn btn-secondary-custom" onclick="window.location.href='shop.html'">
+                        <i class="fas fa-arrow-left me-2"></i>Back to Shop
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="section-padding bg-light-custom">
+        <div class="container">
+            <h2 class="section-title">Similar Products</h2>
+            <div class="row g-4" id="similarProducts"></div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Customer Reviews</h2>
+            <div id="reviewsContainer">
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-2">
+                                    <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0">Sarah Johnson</h6>
+                                        <small class="text-muted">March 15, 2024</small>
+                                        <div class="mt-1 product-rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mb-0">Great product. Used it on the Milford Track and it worked well in different weather conditions. Would recommend for tramping.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-2">
+                                    <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0">Mike Thompson</h6>
+                                        <small class="text-muted">February 28, 2024</small>
+                                        <div class="mt-1 product-rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mb-0">Good value for the price. Quality is solid and works well for New Zealand terrain. Would buy again.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mb-4 text-center">
+                    <nav class="d-flex gap-4 mb-3 justify-content-center">
+                        <a href="index.html">Home</a>
+                        <a href="shop.html">Shop</a>
+                        <a href="#about">About</a>
+                        <a href="#contact">Help</a>
+                    </nav>
+                    <img src="images/logo.png" alt="Aotearoa Adventure Gear" class="footer-logo mb-3">
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Aotearoa Adventure Gear. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/floating-anchor.js"></script>
+    
+    <script>
+        let currentProduct = null;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProductDetails();
+        });
+        
+        function loadProductDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            
+            if (!productId) {
+                window.location.href = 'shop.html';
+                return;
+            }
+            
+            currentProduct = getProductById(productId);
+            
+            if (!currentProduct) {
+                showNotification('Product not found', 'error');
+                setTimeout(() => window.location.href = 'shop.html', 2000);
+                return;
+            }
+            
+            document.getElementById('pageTitle').textContent = `${currentProduct.name} - Aotearoa Adventure Gear`;
+            document.getElementById('productName').textContent = currentProduct.name;
+            document.getElementById('productPrice').textContent = formatCurrency(currentProduct.price);
+            document.getElementById('productDescription').textContent = currentProduct.description;
+            document.getElementById('productImage').src = currentProduct.image;
+            document.getElementById('productImage').alt = currentProduct.name;
+            document.getElementById('productRating').innerHTML = generateStarRating(currentProduct.rating, currentProduct.reviews);
+            
+            const modelSelect = document.getElementById('modelSelect');
+            currentProduct.models.forEach(model => {
+                const option = document.createElement('option');
+                option.value = model;
+                option.textContent = model;
+                modelSelect.appendChild(option);
+            });
+            
+            loadSimilarProducts();
+        }
+        
+        function loadSimilarProducts() {
+            const similar = getProductsByCategory(currentProduct.category).filter(p => p.id !== currentProduct.id).slice(0, 3);
+            const container = document.getElementById('similarProducts');
+            
+            similar.forEach(product => {
+                const col = document.createElement('div');
+                col.className = 'col-md-4';
+                col.innerHTML = `
+                    <div class="product-card hover-lift" onclick="window.location.href='product-detail.html?id=${product.id}'" style="cursor: pointer;">
+                        <img src="${product.image}" alt="${product.name}">
+                        <div class="product-card-body">
+                            <h5 class="product-name">${product.name}</h5>
+                            <div class="product-price">${formatCurrency(product.price)}</div>
+                            ${generateStarRating(product.rating, product.reviews)}
+                        </div>
+                    </div>
+                `;
+                container.appendChild(col);
+            });
+        }
+        
+        function addProductToCart() {
+            const modelSelect = document.getElementById('modelSelect');
+            const selectedModel = modelSelect.value;
+            
+            if (!selectedModel) {
+                showNotification('Please select a model first', 'warning');
+                modelSelect.focus();
+                return;
+            }
+            
+            addToCart(currentProduct.id, 1, selectedModel);
+        }
+    </script>
+</body>
+</html>
